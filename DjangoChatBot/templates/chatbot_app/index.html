@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Chatbot</h1>
+        <div id="answer"></div>
+        <textarea id="questionInput" placeholder="Escribe aquí tu pregunta"></textarea>
+        <button id="submitQuestion">Enviar</button>
+        <button id="micButton">Micrófono</button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
