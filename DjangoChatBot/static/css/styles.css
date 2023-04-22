@@ -26,6 +26,24 @@
     border-radius: 8px;
 }
 
+.btn-login, .btn-register {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.btn-login:active, .btn-register:active {
+    background-color: #007398;
+}
+
 .mic-button:active {
     background-color: #3e8e41;
 }
@@ -72,4 +90,43 @@
 .chat-history {
     max-height: 300px;
     overflow-y: scroll;
+}
+
+.auth-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.responses-container {
+    max-height: 500px;
+    overflow-y: scroll;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.table-container {
+    display: flex; /* crear un contenedor flex */
+    flex-direction: column; /* alinear el contenido en una columna */
+    height: 540px; /* altura fija para el contenedor */
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #fff;
+    height: 40px; /* altura fija para el encabezado */
+    line-height: 40px; /* alineación vertical del texto */
+}
+
+.table {
+    flex: 1; /* hacer que el contenido de la tabla ocupe el espacio disponible */
+    position: relative;
+    z-index: 0;
 }

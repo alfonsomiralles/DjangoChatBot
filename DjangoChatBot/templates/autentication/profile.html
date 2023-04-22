@@ -1,0 +1,17 @@
+{% extends 'layout/base.html' %}
+ 
+{% block 'title' %}Perfil{% endblock 'title' %}
+{% block 'content' %}
+<div class="auth-form-container">
+    <h2>Perfil de {{ user.username }}</h2>
+    <p>Email: {{ user.email }}</p>
+    {% if not user.is_staff and not user.is_staff_request %}
+        <h2>Solicitar acceso al staff</h2>
+        <p>Si deseas ser parte del staff, envía una solicitud y el administrador la revisará.</p>
+        <form method="post" action="{% url 'profile' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+        </form>
+    {% endif %}
+</div>
+{% endblock 'content' %}

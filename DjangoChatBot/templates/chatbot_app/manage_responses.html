@@ -1,0 +1,48 @@
+{% extends 'layout/base.html' %}
+
+{% block 'title' %}Administrar respuestas predefinidas{% endblock %}
+
+{% block 'content' %}
+<div class="container">
+    <h2>Administrar respuestas predefinidas</h2>
+    <form method="post" action="{% url 'manage_responses' %}">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group text-center">
+                {{ field.label_tag }}<br>
+                {{ field }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Agregar respuesta predefinida</button>
+    </form>
+    <hr>
+    <form method="get" action="{% url 'manage_responses' %}">
+        <input type="text" name="search" placeholder="Buscar respuesta predefinida" value="{{ request.GET.search|default:'' }}">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+    <div class="responses-container">
+        <div class="table-container">
+            <div class="sticky-header">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Palabras clave</th>
+                            <th scope="col">Respuestas</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <table class="table">
+                <tbody>
+                    {% for response in responses %}
+                        <tr>
+                            <td>{{ response.keywords }}</td>
+                            <td>{{ response.answer }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
