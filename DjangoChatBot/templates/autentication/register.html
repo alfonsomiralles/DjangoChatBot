@@ -1,0 +1,15 @@
+{% extends 'layout/base.html' %}
+ 
+{% block 'title' %}Registro{% endblock 'title' %}
+{% block 'content' %}
+<div class="auth-form-container">
+    <h2>Registrar usuario</h2>
+    <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Registar" class="btn-register" />
+    </form>
+</div>
+{% endblock 'content' %}

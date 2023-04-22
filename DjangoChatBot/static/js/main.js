@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const questionInput = document.getElementById('questionInput');
     const submitQuestion = document.getElementById('submitQuestion');
     const answerDiv = document.getElementById('answer');
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("X-CSRFToken", csrf_token);
 
     function textToSpeech(text) {
         const speech = new SpeechSynthesisUtterance(text);
@@ -13,9 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function getAnswer(question) {
         fetch('/chatbot/', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers:headers,
             body: JSON.stringify({ question: question })
         })
         .then(response => response.json())

@@ -1,17 +1,10 @@
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.2-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/A2U4q3/0xEB6svP8476vLk6Q8XCraijVa82Lx9" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
+{% extends 'layout/base.html' %}
+{% block 'content'  %}
     <div class="container mt-5">
+        {% csrf_token %}
+        <script>
+            const csrf_token = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+        </script>
         <h2 class="text-center">Chatbot con Inteligencia Artificial - Texto y Voz</h2>
         <h3 class="text-center">Trabajo Final de Grado - Alfonso Miralles Martínez</h3>
         <div class="row">
@@ -34,7 +27,10 @@
             <div id="answer"></div>
         </div>
     </div>
+{% endblock %}   
+
+{% block 'scripts'  %}
+{% load static %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/main.js' %}"></script>
-</body>
-</html>
+{% endblock %}

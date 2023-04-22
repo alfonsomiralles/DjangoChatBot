@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activación de cuenta</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 30px;">
+    <div style="background-color: #ffffff; border-radius: 5px; padding: 20px; max-width: 600px; margin: 0 auto;">
+        <h1 style="color: #3f3f3f; font-size: 24px; text-align: center;">Por favor, activa tu cuenta para utilizar ChatBot</h1>
+        <p style="color: #3f3f3f; font-size: 16px;">Hola {{ username }},</p>
+        <p style="color: #3f3f3f; font-size: 16px;">Gracias por registrarte en nuestro sitio. Para activar tu cuenta y verificar tu dirección de correo electrónico, por favor haz clic en el siguiente enlace:</p>
+        <p style="text-align: center;">
+            <a href="{{ link }}" style="background-color: #3f3f3f; color: #ffffff; font-size: 16px; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: inline-block;">Activa tu cuenta</a>
+        </p>
+        <p style="color: #3f3f3f; font-size: 16px;">Si no puedes ver el botón, copia y pega el siguiente enlace en tu navegador:</p>
+        <p><a href="{{ link }}" style="color: #3f3f3f; text-decoration: none;">{{ link }}</a></p>
+        <p style="color: #3f3f3f; font-size: 16px;">¡Gracias!</p>
+    </div>
+</body>
+</html>

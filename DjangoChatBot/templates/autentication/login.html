@@ -1,0 +1,15 @@
+{% extends 'layout/base.html' %}
+ 
+{% block 'title' %}Login{% endblock 'title' %}
+{% block 'content' %}
+<div class="auth-form-container">
+    <h2>Iniciar sesión</h2>
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Login" class="btn-login" />
+    </form>
+</div> 
+{% endblock 'content' %}
