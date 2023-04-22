@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function getAnswer(question) {
-        fetch('/api/chatbot/', {
+        fetch('/chatbot/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -20,9 +20,16 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(response => response.json())
         .then(data => {
+            const questionElement = document.createElement('div');
+            questionElement.className = 'user-question';
+            questionElement.textContent = "Usuario: " + question;
+            answerDiv.appendChild(questionElement);
+
             const answerElement = document.createElement('div');
-            answerElement.textContent = data.answer;
+            answerElement.className = 'bot-answer';
+            answerElement.textContent = "Chatbot: " + data.answer;
             answerDiv.appendChild(answerElement);
+
             textToSpeech(data.answer);
         });
     }
@@ -32,10 +39,17 @@ document.addEventListener("DOMContentLoaded", function() {
         recognition.lang = 'es-ES';
         recognition.start();
 
+        micButton.classList.add('listening');
+
         recognition.onresult = function(event) {
             const question = event.results[0][0].transcript;
             questionInput.value = question;
             getAnswer(question);
+
+            micButton.classList.remove('listening');
+        };
+        recognition.onerror = function() {
+            micButton.classList.remove('listening');
         };
     });
 
