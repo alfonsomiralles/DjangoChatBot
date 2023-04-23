@@ -2,30 +2,27 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="{% url 'index' %}">Chatbot</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         {% if user.is_authenticated %}
+          {% if user.is_staff%}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'manage_responses' %}" title="Panel de administración"><i class="fas fa-cogs"></i></a>
+            </li>
+            {% endif %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'manage_responses' %}">Panel de administración</a>
+            <a class="nav-link" href="{% url 'profile' %}" title="Perfil de usuario"><i class="fas fa-user"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'profile' %}">Perfil de usuario</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
+            <a class="nav-link" href="{% url 'logout' %}" title="Cerrar sesión"><i class="fas fa-sign-out-alt"></i></a>
           </li>
         {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+            <a class="nav-link" href="{% url 'login' %}" title="Iniciar sesión"><i class="fas fa-sign-in-alt"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
+            <a class="nav-link" href="{% url 'register' %}" title="Registrarse"><i class="fas fa-user-plus"></i></a>
           </li>
         {% endif %}
       </ul>
-    </div>
   </div>
 </nav>

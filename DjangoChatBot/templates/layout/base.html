@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot | {% block 'title' %}{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/mLmbm0p6U/rXuIzY2424p+4C6hZ6WR4Zg5Vk5S" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% block 'styles' %}
@@ -15,11 +16,14 @@
     {% include 'layout/partials/menu.html' %}
     <ul class="messages">
         {% if messages %}
-            {% for message in messages %}
-            <div class="notification {{ message.tags}}">
-                {{ message }}
+            <div class="text-center">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible custom-message" role="alert"> <!-- Añade la clase custom-message aquí -->
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         {% endif %}
     </ul>
     <main>
@@ -29,6 +33,16 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBud6bA8q3p1jk+35leRj3Kg0IDGCW3HrOs1GyJr2z5Jr8z2" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-GLhlTQ8iVG93xBg3x3dJ3LEpDsDDE7xHox9Segf2hTXRzdx2DZ7ALDOtYVFIPt7f" crossorigin="anonymous"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var closeAlerts = document.querySelectorAll(".alert-dismissible .btn-close");
+                for (var i = 0; i < closeAlerts.length; i++) {
+                    closeAlerts[i].addEventListener("click", function () {
+                        this.parentElement.remove();
+                    });
+                }
+            });
+        </script>
     {% endblock %}
 </body>
 </html>

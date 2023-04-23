@@ -1,24 +1,25 @@
 {% extends 'layout/base.html' %}
 {% block 'content'  %}
-    <div class="container mt-5">
+    <div class="hero-container">
         {% csrf_token %}
         <script>
             const csrf_token = document.getElementsByName("csrfmiddlewaretoken")[0].value;
         </script>
-        <h2 class="text-center">Chatbot con Inteligencia Artificial - Texto y Voz</h2>
-        <h3 class="text-center">Trabajo Final de Grado - Alfonso Miralles Martínez</h3>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="input-group mt-4">
-                    <input id="questionInput" class="form-control" placeholder="Escribe tu pregunta aquí...">
-                    <button id="submitQuestion" class="send-button">
-                        <p class="mt-0">Enviar pregunta escrita</p>    
-                    </button>
+        <h1>Chatbot con Inteligencia Artificial - Texto y Voz</h1>
+        <h2>Trabajo Final de Grado - Alfonso Miralles Martínez</h2>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 d-flex justify-content-center">
+                <div class="input-group mt-4 w-100 wider-input-group">
+                    <div class="text-area-container">
+                      <textarea id="questionInput" class="form-control" rows="1" placeholder="Escribe tu pregunta aquí..."></textarea>
+                      <button id="submitQuestion" class="send-button" title="Enviar pregunta escrita">
+                          <i class="fas fa-paper-plane"></i>    
+                      </button>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6 text-center mt-4">
-                <button id="micButton" class="mic-button">
-                    <p class="mb-1">Pulse para hablar</p>
+            <div class="col-12 d-flex justify-content-center mt-4">
+                <button id="micButton" class="mic-button" title="Pulse para hablar">
                     <i id="micIcon" class="fas fa-microphone"></i>
                 </button>
             </div>
