@@ -1,0 +1,22 @@
+{% extends 'layout/base.html' %}
+
+{% block 'title' %}Editar respuesta predefinida{% endblock %}
+
+{% block 'content' %}
+<div class="container">
+    <h2>Editar respuesta predefinida</h2>
+    <form method="post" action="">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group text-center">
+                {{ field.label_tag }}<br>
+                <textarea name="{{ field.html_name }}" id="{{ field.auto_id }}" class="custom-textarea">{{ field.value|default:'' }}</textarea>
+            </div>
+        {% endfor %}
+        <div class="text-center">
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <a href="{% url 'manage_responses' %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

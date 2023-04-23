@@ -1,7 +1,7 @@
 import re, pyttsx3, openai
 from ..models import PredefinedAnswer
 
-def predefined_answers():
+def update_predefined_answers():
     answers = PredefinedAnswer.objects.all()
     predefined_answers_dict = {}
 
@@ -12,9 +12,7 @@ def predefined_answers():
 
     return predefined_answers_dict
 
-predefined_answers = predefined_answers()
-
-def find_predefined_answer(question):
+def find_predefined_answer(question, predefined_answers):
     question_words = question.lower().split()
     question_words = [re.sub(r'[^\w\s]', '', word) for word in question_words]  # Eliminar signos de puntuación
 
@@ -44,3 +42,5 @@ def gpt_response(prompt):
         return response.choices[0].text.strip()
     except Exception as e:
         return None
+
+ 
