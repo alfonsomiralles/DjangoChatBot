@@ -26,7 +26,7 @@ def register(request):
             else:
                 user.save()
             send_confirmation_email(request, user)
-            messages.success(request, 'Usuario creado con éxito. Por favor, revise su email para confirmar su cuenta')
+            messages.success(request, 'Te has registrado con éxito. Por favor, revisa tu email para confirmar su cuenta')
             return redirect('login')
         else:
             for field in form:

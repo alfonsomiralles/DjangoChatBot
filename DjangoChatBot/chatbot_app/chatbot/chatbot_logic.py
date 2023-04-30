@@ -37,10 +37,18 @@ def synthesize_speech(text):
 
 def gpt_response(prompt):
     try:
-        prompt = f"Por favor, responde en español: {prompt}"
-        response = openai.Completion.create(engine="text-davinci-002", prompt=prompt, max_tokens=100, n=1, stop=None, temperature=0.5)
-        return response.choices[0].text.strip()
+        description = f"Por favor, responde de froma breve en español a esta pregunta: "
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo", 
+            messages=[
+            {"role": "system", "content":description},
+            {"role": "user", "content":prompt},
+            ],
+            max_tokens = 200,
+            temperature = 0.5,)
+        return response['choices'][0]['message']['content'].strip()
     except Exception as e:
+        print(e)
         return None
 
  
