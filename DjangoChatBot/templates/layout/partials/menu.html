@@ -1,34 +1,37 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'index' %}">Chatbot</a>
-      <ul class="navbar-nav ms-auto">
-        {% if user.is_authenticated %}
-          {% if user.is_staff%}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'manage_responses' %}" title="Panel de administración"><i class="fas fa-cogs"></i></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'evaluation_results' %}" title="Resultados de Evaluación"><i class="fas fa-chart-bar"></i></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'chart_results' %}" title="Guadro gráfico"><i class="fas fa-poll"></i></a>
-            </li>
-            {% endif %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'profile' %}" title="Perfil de usuario"><i class="fas fa-user"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}" title="Cerrar sesión"><i class="fas fa-sign-out-alt"></i></a>
-          </li>
-        {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}" title="Iniciar sesión"><i class="fas fa-sign-in-alt"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'register' %}" title="Registrarse"><i class="fas fa-user-plus"></i></a>
-          </li>
-        {% endif %}
-      </ul>
+  <div class="container-fluid text-center justify-content-between">
+    <a class="navbar-brand" href="{% url 'index' %}">
+      <img src="{% static 'img/chatbot_logo.png' %}" width="40" height="40" alt="">
+      Chatbot
+    </a>
+    <ul class="navbar-nav ms-auto order-last">
+      {% if user.is_authenticated %}
+      {% if user.is_staff%}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'manage_responses' %}" title="Panel de administración"><i class="fas fa-cogs"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'evaluation_results' %}" title="Resultados de Evaluación"><i class="fas fa-chart-bar"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'chart_results' %}" title="Guadro gráfico"><i class="fas fa-poll"></i></a>
+      </li>
+      {% endif %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'profile' %}" title="Perfil de usuario"><i class="fas fa-user"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}" title="Cerrar sesión"><i class="fas fa-sign-out-alt"></i></a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}" title="Iniciar sesión"><i class="fas fa-sign-in-alt"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'register' %}" title="Registrarse"><i class="fas fa-user-plus"></i></a>
+      </li>
+      {% endif %}
+    </ul>
   </div>
 </nav>
