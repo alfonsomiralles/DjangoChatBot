@@ -4,10 +4,11 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import PredefinedAnswer
 from .serializers import PredefinedAnswerSerializer
-from .chatbot.chatbot import chatbot_get_answer
+from .chatbot.chatbot import chatbot_get_answer, save_evaluation
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import PredefinedAnswerForm
 from django.contrib import messages
+from evaluation.models import Evaluation
 
 @login_required
 def index(request):
@@ -17,8 +18,9 @@ def index(request):
 def chatbot(request):
     if request.method == 'POST':
         question = request.data.get('question', '')
-        answer = chatbot_get_answer(question)
-        return JsonResponse({"answer": answer})
+        user_rating_choice = request.data.get('user_rating_choice', None)
+        answer, evaluation = chatbot_get_answer(request.user, question, user_rating_choice)
+        return JsonResponse({"answer": answer, "evaluation_id": evaluation.id})
     elif request.method == 'GET':
         answers = PredefinedAnswer.objects.all()
         serializer = PredefinedAnswerSerializer(answers, many=True)

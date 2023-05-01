@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'chatbot_app',
     'autentication',
+    'evaluation',
     
 ]
 

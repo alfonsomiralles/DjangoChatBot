@@ -26,7 +26,7 @@ def find_predefined_answer(question, predefined_answers):
 
         if score > max_score:
             max_score = score
-            best_answer = answer
+            best_answer = PredefinedAnswer.objects.get(answer=answer)
 
     return best_answer if max_score > 0 else None
 

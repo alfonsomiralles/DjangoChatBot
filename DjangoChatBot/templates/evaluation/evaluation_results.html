@@ -1,0 +1,57 @@
+{% extends 'layout/base.html' %}
+{% block 'content'  %}
+  <div class="container mt-5">
+    <h1>Resultados de la evaluación</h1>
+    <table class="table table-striped mt-4">
+      <thead>
+        <tr>
+          <th scope="col">Usuario</th>
+          <th scope="col">Pregunta</th>
+          <th scope="col">Respuesta predefinida</th>
+          <th scope="col">Respuesta GPT</th>
+          <th scope="col">Valoración del usuario</th>
+          <th scope="col">Fecha y hora</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for evaluation in evaluations %}
+          <tr>
+            <td>{{ evaluation.user.username }}</td>
+            <td>{{ evaluation.question }}</td>
+            <td>
+              {% if evaluation.answer %}
+                {{ evaluation.answer }}
+              {% else %}
+                N/A
+              {% endif %}
+            </td>
+            <td>
+              {% if evaluation.answer %}
+                N/A
+              {% else %}
+                {{ evaluation.gpt_answer }}
+              {% endif %}
+            </td>
+            <td>{{ evaluation.get_user_rating_choice_display }}</td>
+            <td>{{ evaluation.timestamp }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="pagination">
+      <span class="step-links">
+        {% if evaluations.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ evaluations.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="current">
+          Page {{ evaluations.number }} of {{ evaluations.paginator.num_pages }}.
+        </span>
+        {% if evaluations.has_next %}
+          <a href="?page={{ evaluations.next_page_number }}">next</a>
+          <a href="?page={{ evaluations.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+      </span>
+    </div>
+  </div>
+{% endblock %}
