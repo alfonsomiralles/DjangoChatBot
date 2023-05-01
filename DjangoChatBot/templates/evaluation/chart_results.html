@@ -1,0 +1,29 @@
+{% extends 'layout/base.html' %}
+{% block 'title' %}Gráfico{% endblock %}
+{% block 'content'  %}
+  <div class="container mt-5">
+    <h2>Gráfico de valoraciones en respuestas</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <label for="start-date">Fecha de inicio:</label>
+        <input type="date" id="start-date" name="start-date" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <label for="end-date">Fecha de fin:</label>
+        <input type="date" id="end-date" name="end-date" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <label>&nbsp;</label>
+        <button type="button" class="btn btn-primary" onclick="updateChartData()">Actualizar</button>
+      </div>
+    </div>
+    <canvas id="evaluationChart" width="400" height="200"></canvas>
+    <script id="chart-data" type="application/json">{{ chart_data }}</script>
+  </div>
+{% endblock %}
+
+{% block 'scripts' %}
+{% load static %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{% static 'js/evaluation_charts.js' %}"></script>
+{% endblock %}

@@ -2,6 +2,7 @@
  
 {% block 'title' %}Login{% endblock 'title' %}
 {% block 'content' %}
+<main class="main-content">
 <div class="auth-form-container">
     <h2>Iniciar sesión</h2>
     <form action="{% url 'login' %}" method="POST">
@@ -12,4 +13,5 @@
         <input type="submit" value="Login" class="btn-login" />
     </form>
 </div> 
+</main>
 {% endblock 'content' %}

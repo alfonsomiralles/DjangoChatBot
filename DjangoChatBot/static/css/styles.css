@@ -237,3 +237,20 @@ table td:first-child {
     background-color: rgb(131, 174, 131);
     color: white;
 }
+footer {
+    padding: 1rem 0;
+  }
+  
+  @media (min-width: 992px) {
+    footer {
+      margin-top: 5rem;
+      margin-bottom: 0;
+    }
+  }
+
+.main-content {
+    min-height: calc(100vh - 100px); /* Cambia "100px" al tamaño de tu navbar */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }

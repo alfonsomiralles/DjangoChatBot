@@ -14,6 +14,8 @@
 </head>
 <body>
     {% include 'layout/partials/menu.html' %}
+    <br>
+    <br>
     <ul class="messages">
         {% if messages %}
             <div class="text-center">
@@ -29,6 +31,7 @@
     <main>
         {% block 'content' %}{% endblock %}
     </main>
+    {% include 'layout/partials/footer.html' %}
     {% block 'scripts' %}
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBud6bA8q3p1jk+35leRj3Kg0IDGCW3HrOs1GyJr2z5Jr8z2" crossorigin="anonymous"></script>

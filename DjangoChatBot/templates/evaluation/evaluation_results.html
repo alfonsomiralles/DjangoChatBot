@@ -1,4 +1,5 @@
 {% extends 'layout/base.html' %}
+{% block 'title' %}Resultados{% endblock %}
 {% block 'content'  %}
   <div class="container mt-5">
     <h1>Resultados de la evaluación</h1>
@@ -54,4 +55,10 @@
       </span>
     </div>
   </div>
+{% endblock %}
+
+{% block 'scripts' %}
+{% load static %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{% static 'js/evaluation_charts.js' %}"></script>
 {% endblock %}

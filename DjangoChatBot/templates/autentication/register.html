@@ -2,6 +2,7 @@
  
 {% block 'title' %}Registro{% endblock 'title' %}
 {% block 'content' %}
+<main class="main-content">
 <div class="auth-form-container">
     <h2>Registrar usuario</h2>
     <form action="{% url 'register' %}" method="POST">
@@ -12,4 +13,5 @@
         <input type="submit" value="Registar" class="btn-register" />
     </form>
 </div>
+</main>
 {% endblock 'content' %}
