@@ -4,6 +4,7 @@
 {% block 'content' %}
 <main class="main-content">
 <div class="auth-form-container">
+    <br>
     <h2>Perfil de {{ user.username }}</h2>
     <p>Email: {{ user.email }}</p>
     {% if not user.is_staff and not user.is_staff_request %}
