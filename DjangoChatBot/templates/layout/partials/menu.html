@@ -1,5 +1,5 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="{% url 'index' %}">Chatbot</a>
       <ul class="navbar-nav ms-auto">
@@ -10,6 +10,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'evaluation_results' %}" title="Resultados de Evaluación"><i class="fas fa-chart-bar"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'chart_results' %}" title="Guadro gráfico"><i class="fas fa-poll"></i></a>
             </li>
             {% endif %}
           <li class="nav-item">

@@ -2,6 +2,7 @@
  
 {% block 'title' %}Perfil{% endblock 'title' %}
 {% block 'content' %}
+<main class="main-content">
 <div class="auth-form-container">
     <h2>Perfil de {{ user.username }}</h2>
     <p>Email: {{ user.email }}</p>
@@ -15,4 +16,5 @@
         </form>
     {% endif %}
 </div>
+</main>
 {% endblock 'content' %}
