@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import PredefinedAnswerForm
 from django.contrib import messages
 from evaluation.models import Evaluation
+from django.core.paginator import Paginator
 
 @login_required
 def index(request):
@@ -40,13 +41,40 @@ def manage_responses(request):
         responses = PredefinedAnswer.objects.filter(keywords__icontains=query)
     else:
         responses = PredefinedAnswer.objects.all()
+    
+    paginator = Paginator(responses, 10)  # 10 respuestas por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     form = PredefinedAnswerForm()
 
     context = {
-        'responses': responses,
+        'responses': page_obj,
         'form': form
     }
-    return render(request, 'chatbot_app/manage_responses.html', context)    
+    return render(request, 'chatbot_app/manage_responses.html', context)
+
+def edit_response(request, response_id):
+    response = get_object_or_404(PredefinedAnswer, id=response_id)
+    if request.method == 'POST':
+        form = PredefinedAnswerForm(request.POST, instance=response)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Modificado con éxito')
+            return redirect('manage_responses')
+        messages.error(request,'Ha ocurrido un error')
+        return redirect('manage_responses')
+    else:
+        form = PredefinedAnswerForm(instance=response)
+    return render(request, 'chatbot_app/edit_response.html', {'form': form})
+
+def delete_response(request, response_id):
+    response = get_object_or_404(PredefinedAnswer, id=response_id)
+    if request.method == 'POST':
+        response.delete()
+        messages.success(request, 'Eliminado con éxito')
+        return redirect('manage_responses')
+    return render(request, 'chatbot_app/delete_response.html', {'response': response})    
 
 def edit_response(request, response_id):
     response = get_object_or_404(PredefinedAnswer, id=response_id)
