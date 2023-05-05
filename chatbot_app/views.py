@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import PredefinedAnswer
 from .serializers import PredefinedAnswerSerializer
-from .chatbot.chatbot import chatbot_get_answer, save_evaluation
+from .chatbot.chatbot import chatbot_get_answer
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import PredefinedAnswerForm
 from django.contrib import messages

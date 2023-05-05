@@ -8,12 +8,14 @@ charset-normalizer==3.1.0
 colorama==0.4.6
 comtypes==1.1.14
 Django==4.2
+django-chartjs==2.3.0
 djangorestframework==3.14.0
 frozenlist==1.3.3
 idna==3.4
 multidict==6.0.4
 mysqlclient==2.1.1
-openai==0.27.4
+openai==0.27.5
+PyMySQL==1.0.3
 pypiwin32==223
 python-dotenv==1.0.0
 pyttsx3==2.90
