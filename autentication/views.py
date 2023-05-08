@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomPasswordChangeForm
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -36,7 +36,8 @@ def register(request):
     else:
         form = CustomUserCreationForm
     context = {
-        'form': form
+        'form': form,
+        'password_help_texts': form.get_password_help_texts()
     }
     return render(request, 'autentication/register.html', context)
 
@@ -100,3 +101,39 @@ def profile(request):
         return redirect('profile')
 
     return render(request, 'autentication/profile.html')
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Perfil actualizado con éxito.')
+            return redirect('profile')
+        else:
+            for field in form:
+                for error in field.errors:
+                    messages.error(request, f"{field.label}: {error}")
+            return redirect('edit_profile')
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+    context = {'form': form}
+    return render(request, 'autentication/edit_profile.html', context)
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = CustomPasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Contraseña cambiada con éxito.')
+            return redirect('profile')
+        else:
+            for field in form:
+                for error in field.errors:
+                    messages.error(request, f"{field.label}: {error}")
+            return redirect('change_password')
+    else:
+        form = CustomPasswordChangeForm(request.user)
+    context = {'form': form}
+    return render(request, 'autentication/change_password.html', context)

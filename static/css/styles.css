@@ -378,3 +378,32 @@ footer {
 .modal textarea {
     width: 100%;
 }
+
+.password-rules {
+    /* Estilos para las reglas de contraseña */
+    font-size: 14px;
+    color: #777;
+}
+
+.profile-card {
+    max-width: 100%;
+}
+
+.wide-field {
+    width: 125%;
+}
+
+.card-custom-width {
+    width: 130%;
+    max-width: 160%;
+}
+@media (max-width: 992px) {
+    .wide-field {
+        width: 100%;
+    }
+
+    .card-custom-width {
+        width: 100%;
+        max-width: 100%;
+    }
+}
