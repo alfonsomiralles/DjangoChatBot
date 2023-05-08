@@ -12,6 +12,13 @@
         </table>
         <input type="submit" value="Registar" class="btn-register" />
     </form>
+    <div class="password-help-texts">
+        <ul>
+            {% for help_text in password_help_texts %}
+                <li>{{ help_text }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 </main>
 {% endblock 'content' %}
