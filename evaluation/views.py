@@ -21,6 +21,7 @@ def evaluation_results(request):
     }
     return render(request, 'evaluation/evaluation_results.html', context)
 
+@user_passes_test(lambda user: user.is_staff, login_url='login')
 def chart_results(request):
     start_date_str = request.GET.get('start_date')
     end_date_str = request.GET.get('end_date')
