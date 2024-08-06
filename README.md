@@ -1,7 +1,7 @@
 # DjangoChatBot
 Customized Chatbot with predefined responses, trained AI and API connected with OpenAI
 
-## YouTube video demostration
+## YouTube video demo
 https://youtu.be/ShxIssICgYg?si=bJWW8Vt29aFUdDKb
 
 ## Take a look
